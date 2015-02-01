@@ -5,23 +5,24 @@ import java.util.*;
 
 import spelmotorn.*;
 
-public class Renderare extends Canvas{
+public class Renderare extends JFrame{
 	
 	ArrayList<Loader> levels = new ArrayList<Loader>(); //olika levlar renderaren kan rendera från
 	int levelNr; //vilken position i ArrayListen den nuvarande leveln är
-	JFrame window;
+	JPanel screen;
 	
 	public Renderare(int w, int h, String str){ //w är fönstrets 'width', h är fönstrets 'height'
+		super("str");
 		setMinimumSize(new Dimension(w, h));
 		setMaximumSize(new Dimension(w, h));
 		setPreferredSize(new Dimension(w, h));
-		window = new JFrame(str);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setSize(w, h);
-		window.setLayout(new BorderLayout());
-		window.add(this, BorderLayout.CENTER);
-		window.pack();
-		window.setVisible(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(w, h);
+		setLayout(new BorderLayout());
+		screen = new JPanel();
+		add(screen, BorderLayout.CENTER);
+		pack();
+		setVisible(true);
 	}
 	
 	void addLevel(Loader level){
@@ -32,11 +33,11 @@ public class Renderare extends Canvas{
 	}
 	
 	public void renderLevel(){ //ska rendera den nuvarande leveln
-		/*for(Sprite spr : levels.get(levelNr).objekten){
+		for(Sprite spr : levels.get(levelNr).objekten){
 			System.out.print("Sprite");
-			add(spr, BorderLayout.CENTER);
-			validate();
-			repaint();
-		}*/
+			screen.add(spr, BorderLayout.CENTER);
+			screen.validate();
+			screen.repaint();
+		}
 	}
 }
