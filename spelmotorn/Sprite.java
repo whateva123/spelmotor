@@ -13,8 +13,11 @@ public class Sprite extends JComponent{
 	Sprite(int x, int y, int w, int h, int drawOrder){
 		this.x = x;
 		this.y = y;
+		this.w = w;
+		this.h = h;
 		this.drawOrder = drawOrder;
 		setLayout(null);
+		setBounds(x,y,w, h);
 		Dimension d = new Dimension(w, h);
 		setPreferredSize(d);
 		setMinimumSize(d);
@@ -37,7 +40,7 @@ public class Sprite extends JComponent{
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
 		System.out.print("ritades");
-		g.drawImage(bilder.get(bildNr).getImage(), getWidth(), getHeight(), this);
+		g.drawImage(bilder.get(bildNr).getImage(), x, y, x+w, y+h, this);
 	}
 	
 	

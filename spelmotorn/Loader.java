@@ -10,7 +10,13 @@ public class Loader {
 	}
 	
 	void addObject(Sprite spriten){
-		objekten.add(spriten.getDrawOrder(), spriten);
+		if(spriten.getDrawOrder() <= objekten.size()){
+			System.out.println("nånstans");
+			objekten.add(spriten.getDrawOrder(), spriten);
+		}else{
+			System.out.println("sist");
+			objekten.add(spriten);
+		}
 	}
 
 }
