@@ -37,6 +37,23 @@ public class Sprite extends JComponent{
 		return drawOrder;
 	}
 	
+	public int getX(){
+		return x;
+	}
+	
+	public int getY(){
+		return y;
+	}
+	
+	
+	public void setX(int x){
+		this.x = x;
+	}
+	
+	public void setY(int y){
+		this.y = y;
+	}
+	
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
 		System.out.print("ritades");

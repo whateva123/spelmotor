@@ -30,15 +30,13 @@ public class Renderare extends JFrame{
 		}
 	}
 	
-	public void renderLevel(){ //ska rendera den nuvarande leveln
-		int prio = levels.get(levelNr).objekten.size();
+	public void renderLevel(){ //ska rendera den nuvarande leveln. Ska bara kallas en gång per level. todo tar bort gamla leveln från fönstret
 		for(Sprite spr : levels.get(levelNr).objekten){
 			System.out.print("Sprite");
 			add(spr, BorderLayout.CENTER);
 			setComponentZOrder(spr, 0);
 			validate();
 			repaint();
-			prio--;
 		}
 	}
 }

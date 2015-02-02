@@ -16,6 +16,8 @@ public class Testaren{
 		lvl1.addObject(spr);
 		renderer.addLevel(lvl1);
 		renderer.renderLevel();
+		spr2.setX(spr2.getX()+100);
+		spr2.setY(spr2.getY()+100);
 		
 		boolean quit = false;
 		while(!quit){
