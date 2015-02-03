@@ -1,20 +1,17 @@
 package spelmotorn;
-import java.util.*;
-
 import javax.swing.*;
 
 import java.awt.*;
 
-public class Sprite extends JComponent{
-	private static final long serialVersionUID = 1L; //måste kolla vad detta är
-	private ArrayList<ImageIcon> bilder = new ArrayList<ImageIcon>();
-	int x, y, w, h, bildNr, drawOrder; //x och y är koordinaterna bilden ska ritas på. w står för width, och h för height. bildNr är vilken bild som ska vissas. drawOrder är vilken prioritet bilden ska ritas med (t.ex, en bakgrund ska ritas först, så den har drawOrder '0')
+public class Sprite extends GameObject{
+	private static final long serialVersionUID = 7805504552767123047L;
+	protected ImageIcon background;
+	protected int drawOrder;
+	protected int offsetX = 0; 
+	protected int offsetY = 0;//offsetX och offsetY är koordinaterna bilden ska flyttas med. w står för width, och h för height. bildNr är vilken bild som ska vissas. drawOrder är vilken prioritet bilden ska ritas med (t.ex, en bakgrund ska ritas först, så den har drawOrder '0')
 		
 	Sprite(int x, int y, int w, int h, int drawOrder){
-		this.x = x;
-		this.y = y;
-		this.w = w;
-		this.h = h;
+		super(x, y, w, h);
 		this.drawOrder = drawOrder;
 		setLayout(null);
 		setBounds(x,y,w, h);
@@ -25,11 +22,8 @@ public class Sprite extends JComponent{
 		
 	}
 	
-	public void addPicture(String filePath){
-		bilder.add(new ImageIcon(filePath));
-		if(bilder.size() == 1){
-			bildNr = 0;
-		}
+	public void addBackground(String filePath){
+		background = new ImageIcon(filePath);
 		
 	}
 	
@@ -37,27 +31,22 @@ public class Sprite extends JComponent{
 		return drawOrder;
 	}
 	
-	public int getX(){
-		return x;
+	
+	
+	public void changeX(int x){
+		this.offsetX = x+offsetX-x;
 	}
 	
-	public int getY(){
-		return y;
-	}
-	
-	
-	public void setX(int x){
-		this.x = x;
-	}
-	
-	public void setY(int y){
-		this.y = y;
+	public void changeY(int y){
+		this.offsetY = y+offsetY-y;
 	}
 	
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
 		System.out.print("ritades");
-		g.drawImage(bilder.get(bildNr).getImage(), x, y, x+w, y+h, this);
+		if(background != null){
+			g.drawImage(background.getImage(), x, y, x+w, y+h, this);
+		}
 	}
 	
 	
