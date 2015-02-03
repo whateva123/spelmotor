@@ -45,7 +45,7 @@ public class Sprite extends GameObject{
 		super.paintComponent(g);
 		System.out.print("ritades");
 		if(background != null){
-			g.drawImage(background.getImage(), x, y, x+w, y+h, this);
+			g.drawImage(background.getImage(), x+offsetX, y+offsetY, x+w, y+h, this);
 		}
 	}
 	
