@@ -17,6 +17,7 @@ public class Sound {
  * Lägg till ljud för varje action som behöver ljud.
  * ex: punchSound -> getAudioClip
  */
+	AudioClip jumpSound;
 	
 	public void loadSounds(){
 		backgroundSound();
@@ -34,13 +35,14 @@ public class Sound {
 		}catch(IOException e){
 			System.out.println("Fel på backgroundsmusic");
 		}
-		soundPlayer.start(backgroundLoop);
+		soundPlayer.start(backgroundLoop); 
 	}
 	
 	protected void actionSoundMethod(){
 /*
  * Välj namn på filen -> Action -> Keypressed/Movement sound
  * För varje action -> en metod -> för varje keypressed -> ljud om det krävs.
+ * Skapa ny metod (annan namn) med samma try/catch -> Välj ny fil -> ny AudioClip 
  */
 		try{
 		actionSound = getAudioClip(getCodeBase(), "");
@@ -49,6 +51,20 @@ public class Sound {
 			System.out.println("Fel på action sound filen");
 		}
 		actionSound.play();
-		
 	}
+	
+/*
+ * Exemple ljud metod.
+ * Hopp ljud. jumpSoundMethod() i input för keypressed "jump".
+ */
+	protected void jumpSoundMethod(){
+		try{
+		jumpSound = getAudioClip(getCodeBase(), "");
+		
+		}catch (IOException e){
+			System.out.println("Fel på action sound filen");
+		}
+		jumpSound.play();
+	}
+	
 }
