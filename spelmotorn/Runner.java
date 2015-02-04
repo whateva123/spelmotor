@@ -26,7 +26,7 @@ public class Runner implements Runnable{
 			}
 			if(shouldRender){
 			frames++;
-			renderer.renderLevel();
+			//renderer.renderLevel();
 			}
 			if(System.currentTimeMillis() - lastTimer >= 1000){
 				lastTimer += 1000;

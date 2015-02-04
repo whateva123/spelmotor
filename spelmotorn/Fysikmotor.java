@@ -2,8 +2,10 @@ package spelmotorn;
 
 public class Fysikmotor {
 
-	public Fysikmotor(){
-		
+	private int gravity;
+	
+	public Fysikmotor(int gravity){
+		this.gravity = gravity;
 	}
 	
 	public boolean checkCollision(GameObject obj1, GameObject obj2){
@@ -60,6 +62,8 @@ public class Fysikmotor {
 		return false;
 	}
 	
-	
+	public void applyGravity(Sprite spr){
+		spr.addForce(0, gravity);
+	}
 	
 }
