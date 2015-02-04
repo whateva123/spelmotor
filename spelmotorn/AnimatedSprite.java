@@ -18,19 +18,24 @@ public class AnimatedSprite extends Sprite{
 		
 	}
 	
-	public void addPicture(String filePath){
+	public void addPicture(String filePath, CollisionBody body){
 		bilder.add(new ImageIcon(filePath));
 		if(bilder.size() == 1){
 			bildNr = 0;
 		}
+		addCollisionBody(bilder.size()-1, body);
 	}
 	
-	public void addCollisionBody(int frame, CollisionBody body){
+	private void addCollisionBody(int frame, CollisionBody body){
 		collisionBodies.put(frame, body);
 	}
 	
 	public CollisionBody getBody(int frame){
 		return collisionBodies.get(frame);
+	}
+	
+	public int getNr(){
+		return bildNr;
 	}
 	
 	protected void paintComponent(Graphics g){

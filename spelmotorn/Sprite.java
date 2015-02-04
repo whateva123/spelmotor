@@ -7,8 +7,7 @@ public class Sprite extends GameObject{
 	private static final long serialVersionUID = 7805504552767123047L;
 	protected ImageIcon background;
 	protected int drawOrder;
-	protected int offsetX = 0; 
-	protected int offsetY = 0;//offsetX och offsetY är koordinaterna bilden ska flyttas med. w står för width, och h för height. bildNr är vilken bild som ska vissas. drawOrder är vilken prioritet bilden ska ritas med (t.ex, en bakgrund ska ritas först, så den har drawOrder '0')
+//offsetX och offsetY är koordinaterna bilden ska flyttas med. w står för width, och h för height. bildNr är vilken bild som ska vissas. drawOrder är vilken prioritet bilden ska ritas med (t.ex, en bakgrund ska ritas först, så den har drawOrder '0')
 		
 	Sprite(int x, int y, int w, int h, int drawOrder){
 		super(x, y, w, h);
@@ -32,14 +31,7 @@ public class Sprite extends GameObject{
 	}
 	
 	
-	
-	public void changeX(int x){
-		this.offsetX = x+offsetX-x;
-	}
-	
-	public void changeY(int y){
-		this.offsetY = y+offsetY-y;
-	}
+
 	
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
