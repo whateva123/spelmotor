@@ -6,9 +6,6 @@ import java.util.*;
 import spelmotorn.*;
 
 public class Renderare extends JFrame{
-	
-	ArrayList<Loader> levels = new ArrayList<Loader>(); //olika levlar renderaren kan rendera från
-	int levelNr; //vilken position i ArrayListen den nuvarande leveln är
 
 	
 	public Renderare(int w, int h, String str){ //w är fönstrets 'width', h är fönstrets 'height'
@@ -23,15 +20,9 @@ public class Renderare extends JFrame{
 		setVisible(true);
 	}
 	
-	void addLevel(Loader level){
-		levels.add(level);
-		if(levels.size()== 1){
-			levelNr = 0;
-		}
-	}
 	
-	public void renderLevel(){ //ska rendera den nuvarande leveln. Ska bara kallas en gång per level. todo tar bort gamla leveln från fönstret
-		for(Sprite spr : levels.get(levelNr).objekten){
+	public void renderLevel(ArrayList<GameObject> levels){ //ska rendera den nuvarande leveln. Ska bara kallas en gång per level. todo tar bort gamla leveln från fönstret
+		for(GameObject spr : levels){
 			System.out.print("Sprite");
 			add(spr, BorderLayout.CENTER);
 			setComponentZOrder(spr, 0);

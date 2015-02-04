@@ -2,6 +2,7 @@ package spelmotorn;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 
@@ -10,6 +11,7 @@ public class AnimatedSprite extends Sprite{
 	private static final long serialVersionUID = 2435106591864541981L;
 	protected int bildNr = -1;
 	private ArrayList<ImageIcon> bilder = new ArrayList<ImageIcon>();
+	private HashMap<Integer, CollisionBody> collisionBodies = new HashMap<Integer, CollisionBody>();
 	
 	AnimatedSprite(int x, int y, int w, int h, int drawOrder) {
 		super(x, y, w, h, drawOrder);
@@ -21,6 +23,14 @@ public class AnimatedSprite extends Sprite{
 		if(bilder.size() == 1){
 			bildNr = 0;
 		}
+	}
+	
+	public void addCollisionBody(int frame, CollisionBody body){
+		collisionBodies.put(frame, body);
+	}
+	
+	public CollisionBody getBody(int frame){
+		return collisionBodies.get(frame);
 	}
 	
 	protected void paintComponent(Graphics g){
