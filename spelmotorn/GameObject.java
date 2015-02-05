@@ -10,6 +10,9 @@ public class GameObject extends JComponent{
 	
 	
 	public GameObject(int x, int y, int w, int h){
+		if(w < 0 || h < 0){
+			throw new IllegalArgumentException("Bredden elr längden kan inte vara negativ");
+		}
 		this.x = x;
 		this.y = y;
 		this.w = w;

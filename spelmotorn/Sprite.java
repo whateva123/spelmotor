@@ -15,6 +15,9 @@ public class Sprite extends GameObject{
 	
 	Sprite(int x, int y, int w, int h, int drawOrder){
 		super(x, y, w, h);
+		if(drawOrder < 0){
+			throw new IllegalArgumentException("drawOrder kan inte vara negativ");
+		}
 		this.drawOrder = drawOrder;
 		setLayout(null);
 		setBounds(x,y,w, h);

@@ -16,11 +16,17 @@ public class Fysikmotor {
 		boolean isobj1 = false;
 		boolean isobj2 = false;
 		if(obj1 instanceof AnimatedSprite){
-			isobj1 = true;
+			AnimatedSprite anobj = (AnimatedSprite)obj1;
+			if(anobj.getBody(anobj.getNr()) != null){
+				isobj1 = true;
+			}
 		}
 		
 		if(obj2 instanceof AnimatedSprite){
-			isobj2 = true;
+			AnimatedSprite anobj = (AnimatedSprite)obj2;
+			if(anobj.getBody(anobj.getNr()) != null){
+				isobj2 = true;
+			}
 		}
 		
 		
@@ -52,7 +58,7 @@ public class Fysikmotor {
 		return false;
 	}
 	
-	private boolean checkAnimatedCollision(AnimatedSprite obj1, GameObject obj2){ //beöhvs kontroller
+	private boolean checkAnimatedCollision(AnimatedSprite obj1, GameObject obj2){
 		CollisionBody bod1 = obj1.getBody(obj1.getNr());
 		for(int x = 0; x < bod1.body.size(); x++){
 			if(!(bod1.getMinX(x) > obj2.getMaxX() || bod1.getMaxX(x) > obj2.getX() || bod1.getMinY(x) > obj2.getMaxY() || bod1.getMaxY(x) > obj2.getY())){

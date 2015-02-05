@@ -34,6 +34,13 @@ public class AnimatedSprite extends Sprite{
 		return collisionBodies.get(frame);
 	}
 	
+	public void setNr(int nr){
+		if(nr< 0 || nr >= bilder.size()){
+			throw new IndexOutOfBoundsException("Det finns inte så här många bilder i denna sprite");
+		}
+		bildNr = nr;
+	}
+	
 	public int getNr(){
 		return bildNr;
 	}

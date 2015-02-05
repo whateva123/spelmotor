@@ -42,18 +42,30 @@ public class CollisionBody {
 	}
 	
 	public int getMinX(int index){ //de fyra metoderna nedan behöver felkontroller
+		if(body.get(index) == null){
+			throw new IndexOutOfBoundsException("Det finns inte så här många bilder i denna sprite");
+		}
 		return body.get(index).getMinX();
 	}
 	
 	public int getMaxX(int index){
+		if(body.get(index) == null){
+			throw new IndexOutOfBoundsException("Det finns inte så här många bilder i denna sprite");
+		}
 		return body.get(index).getMaxX();
 	}
 	
 	public int getMinY(int index){
+		if(body.get(index) == null){
+			throw new IndexOutOfBoundsException("Det finns inte så här många bilder i denna sprite");
+		}
 		return body.get(index).getMinY();
 	}
 	
 	public int getMaxY(int index){
+		if(body.get(index) == null){
+			throw new IndexOutOfBoundsException("Det finns inte så här många bilder i denna sprite");
+		}
 		return body.get(index).getMaxY();
 	}
 	

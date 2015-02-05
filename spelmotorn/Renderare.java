@@ -1,5 +1,6 @@
 package spelmotorn;
 import javax.swing.*;
+
 import java.awt.*;
 import java.util.*;
 
@@ -10,6 +11,9 @@ public class Renderare extends JFrame{
 	
 	public Renderare(int w, int h, String str){ //w är fönstrets 'width', h är fönstrets 'height'
 		super("str");
+		if(w < 0 || h < 0){
+			throw new IllegalArgumentException("Bredden elr längden kan inte vara negativ");
+		}
 		setMinimumSize(new Dimension(w, h));
 		setMaximumSize(new Dimension(w, h));
 		setPreferredSize(new Dimension(w, h));
