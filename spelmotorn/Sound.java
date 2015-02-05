@@ -16,6 +16,7 @@ public class Sound {
 /*
  * Lägg till ljud för varje action som behöver ljud.
  * ex: punchSound -> getAudioClip
+ * 
  */
 	AudioClip jumpSound;
 	
