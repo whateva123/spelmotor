@@ -7,7 +7,10 @@ public class Sprite extends GameObject{
 	private static final long serialVersionUID = 7805504552767123047L;
 	protected ImageIcon background;
 	protected int drawOrder;
-//offsetX och offsetY är koordinaterna bilden ska flyttas med. w står för width, och h för height. bildNr är vilken bild som ska vissas. drawOrder är vilken prioritet bilden ska ritas med (t.ex, en bakgrund ska ritas först, så den har drawOrder '0')
+/*
+ * offsetX och offsetY är koordinaterna bilden ska flyttas med. w står för width, och h för height. bildNr är vilken bild som ska vissas.
+ * drawOrder är vilken prioritet bilden ska ritas med (t.ex, en bakgrund ska ritas först, så den har drawOrder '0') 
+ */
 	
 	protected int magnitudeX = 0; //kraft som spriten rör sig i
 	protected int magnitudeY = 0; //kraft som spriten rör sig i
