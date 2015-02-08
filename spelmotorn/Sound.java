@@ -1,4 +1,4 @@
-package spelmotorn;
+/*package spelmotorn;
 
 import java.applet.AudioClip;
 import java.io.*;
@@ -13,12 +13,12 @@ public class Sound {
 	ContinousAudioDataStream backgroundLoop = null;
 	
 	AudioClip actionSound;
-/*
+
  * Lägg till ljud för varje action som behöver ljud.
  * ex: punchSound -> getAudioClip
  * 
  */
-	AudioClip jumpSound;
+/*	AudioClip jumpSound;
 	
 	public void loadSounds(){
 		backgroundSound();
@@ -30,7 +30,7 @@ public class Sound {
 /*
  * Välj fil för bakgrunds musiken -> continious loop
  */
-			backgroundMusic = new AudioStream(new FileInputStream(""));
+/*			backgroundMusic = new AudioStream(new FileInputStream(""));
 			backgroundData = backgroundMusic.getData();
 			backgroundLoop = new ContiniousAudioDataStream(backgroundData);
 		}catch(IOException e){
@@ -45,7 +45,7 @@ public class Sound {
  * För varje action -> en metod -> för varje keypressed -> ljud om det krävs.
  * Skapa ny metod (annan namn) med samma try/catch -> Välj ny fil -> ny AudioClip 
  */
-		try{
+/*		try{
 		actionSound = getAudioClip(getCodeBase(), "");
 		
 		}catch (IOException e){
@@ -58,7 +58,7 @@ public class Sound {
  * Exemple ljud metod.
  * Hopp ljud. jumpSoundMethod() i input för keypressed "jump".
  */
-	protected void jumpSoundMethod(){
+/*	protected void jumpSoundMethod(){
 		try{
 		jumpSound = getAudioClip(getCodeBase(), "");
 		
@@ -68,4 +68,4 @@ public class Sound {
 		jumpSound.play();
 	}
 	
-}
+}*/

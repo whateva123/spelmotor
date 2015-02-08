@@ -1,5 +1,6 @@
 package spelmotorn;
 
+import java.awt.event.*;
 import java.util.*;
 
 public class Loader {
@@ -7,10 +8,24 @@ public class Loader {
 	private Renderare render;
 	private Fysikmotor physic;
 	private int levelNr; //vilken position i ArrayListen den nuvarande leveln är, kanske inte behövs
+	private KeyboardInput keys;
+	private AnimatedSprite player;
 	
-	Loader(Renderare render, Fysikmotor physic){ //Ska ta emot alla spelmotorsdelar här. Jag bara påbörjade med mina delar
+	Loader(Renderare render, Fysikmotor physic, KeyboardInput keys){ //Ska ta emot alla spelmotorsdelar här. Jag bara påbörjade med mina delar
 		this.render = render;
 		this.physic = physic; 
+		this.keys = keys;
+		render.addKeyListener(new Listener());
+	}
+	
+	class Listener extends KeyAdapter{
+		public void keyPressed(KeyEvent e){
+			int key = e.getKeyCode();
+			if(player != null){
+				keys.callFunction(key, player);
+			}
+			keys.callFunction(key, Loader.this);
+		}
 	}
 	
 	void addObject(int lvl, GameObject spriten){
@@ -30,6 +45,10 @@ public class Loader {
 	
 	void setLevel(int lvl){ //behövs kontroller
 		levelNr = lvl;
+	}
+	
+	void setPlayer(AnimatedSprite player){
+		this.player = player;
 	}
 
 }
