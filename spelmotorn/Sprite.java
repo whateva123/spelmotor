@@ -45,6 +45,20 @@ public class Sprite extends GameObject{
 		magnitudeY += forceY;
 	}
 
+	public void normalizeMomentum(int amountX, int amountY){
+		if(magnitudeX >= 0+amountX || magnitudeX <= 0+amountX){
+			magnitudeX += amountX;
+		}else{
+			magnitudeX = 0;
+		}
+		
+		if(magnitudeY >= 0+amountY || magnitudeY <= 0+amountY){
+			magnitudeY += amountY;
+		}else{
+			magnitudeX = 0;
+		}
+	}
+	
 	public int getMagnitudeY(){
 		return magnitudeY;
 	}

@@ -157,10 +157,11 @@ public class AnimatedSprite extends Sprite{
 		super.paintComponent(g);
 		System.out.print("ritades");
 		if(background != null){
-			g.drawImage(background.getImage(), x+offsetX, y+offsetY, x+w, y+h, this);
+			g.drawImage(background.getImage(), x+offsetX+magnitudeX, y+offsetY+magnitudeY, x+w, y+h, this);
 		}
 		if(bildNr != -1){
-			g.drawImage(bilder.get(bildNr).getImage(), x+offsetX, y+offsetY, x+w, y+h, this);
+			System.out.println(magnitudeX);
+			g.drawImage(bilder.get(bildNr).getImage(), x+offsetX+magnitudeX, y+offsetY+magnitudeY, x+w, y+h, this);
 		}
 	}	
 	

@@ -1,10 +1,16 @@
 package spelmotorn;
+import java.awt.event.KeyEvent;
 import java.io.*;
 
 import javax.swing.*;
 
 public class Testaren{
-
+	
+	public static void playerAction(AnimatedSprite spr) {
+		spr.changeX(100);
+		
+	}
+	
 	public static void main(String[] args) {
 		Renderare renderer = new Renderare(800, 800, "test");
 		Fysikmotor fysik = new Fysikmotor(100);
@@ -17,10 +23,12 @@ public class Testaren{
 		spr2.newCollisionBody(0, 0, 10, 0, 10);
 		spr2.addPicture("C:/Users/SwedishDude/Desktop/DesktopStuff/Hi/PiratePie.png");
 		
+		lvl1.setPlayer(spr2);
+		
 		if(fysik.checkCollision(spr, spr2)){
 			System.out.print("True");
 		}else{
-			System.out.print("false");
+			System.out.println("false");
 		}
 		
 		lvl1.addObject(1, spr2);
@@ -28,11 +36,15 @@ public class Testaren{
 		lvl1.setLevel(1);
 		lvl1.renderLevel();
 		
-		//fysik.applyGravity(spr2);
+		fysik.applyGravity(spr2);
 		
-		spr2.changeX(100);
-		spr2.changeY(100);
+		//spr2.changeX(100);
+		//spr2.changeY(100);
 	
+		
+		tangentbord.addPlayerKeybinding(KeyEvent.VK_SPACE, Testaren::playerAction);
+		tangentbord.callFunction(KeyEvent.VK_SPACE, spr2);
+		
 		
 		boolean quit = false;
 		while(!quit){
@@ -42,5 +54,6 @@ public class Testaren{
 		}
 
 	}
+
 
 }
