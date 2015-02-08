@@ -41,20 +41,20 @@ public class KeyboardInput{
 		keyboard.put(key, action);
 	}
 	
-	void callFunction(int key, AnimatedSprite player){
+	boolean callFunction(int key, AnimatedSprite player){
 		if(controller.get(key) == null){
-			return;
+			return false;
 		}
 		controller.get(key).accept(player);
-		
+		return true;
 	}
 	
-	void callFunction(int key, Loader player){
+	boolean callFunction(int key, Loader player){
 		if(keyboard.get(key) == null){
-			return;
+			return false;
 		}
 		keyboard.get(key).accept(player);
-		
+		return true;
 	}
 	
 /*

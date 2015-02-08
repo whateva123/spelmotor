@@ -16,8 +16,8 @@ public class Sprite extends GameObject{
 	protected int magnitudeY = 0; //kraft som spriten rör sig i
 	protected boolean gravitySensitive = true;
 	
-	Sprite(int x, int y, int w, int h, int drawOrder){
-		super(x, y, w, h);
+	Sprite(int x, int y, int w, int h, int drawOrder, int ID){
+		super(x, y, w, h, ID);
 		if(drawOrder < 0){
 			throw new IllegalArgumentException("drawOrder kan inte vara negativ");
 		}
@@ -78,7 +78,6 @@ public class Sprite extends GameObject{
 	
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
-		System.out.print("ritades");
 		if(background != null){
 			g.drawImage(background.getImage(), x+offsetX+magnitudeX, y+offsetY+magnitudeY, x+w, y+h, this);
 		}

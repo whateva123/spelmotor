@@ -15,9 +15,10 @@ public class Testaren{
 		Renderare renderer = new Renderare(800, 800, "test");
 		Fysikmotor fysik = new Fysikmotor(100);
 		KeyboardInput tangentbord = new KeyboardInput();
-		Loader lvl1 = new Loader(renderer, fysik, tangentbord);
-		AnimatedSprite spr = new AnimatedSprite(0, 0, 800, 800, 0);
-		AnimatedSprite spr2 = new AnimatedSprite(0, 0, 400, 400, 1);
+		Runner gameLoop = new Runner();
+		Loader lvl1 = new Loader(renderer, fysik, tangentbord, gameLoop);
+		AnimatedSprite spr = new AnimatedSprite(0, 0, 800, 800, 0, 1);
+		AnimatedSprite spr2 = new AnimatedSprite(0, 0, 400, 400, 1, 1);
 		spr.addBackground("Images/Sad4.png");
 		spr.setGravity(false);
 		spr2.newCollisionBody(0, 0, 10, 0, 10);
@@ -45,7 +46,7 @@ public class Testaren{
 		tangentbord.addPlayerKeybinding(KeyEvent.VK_SPACE, Testaren::playerAction);
 		tangentbord.callFunction(KeyEvent.VK_SPACE, spr2);
 		
-		
+		//lvl1.startGame();
 		boolean quit = false;
 		while(!quit){
 			//kolla efter inputs

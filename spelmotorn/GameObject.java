@@ -1,5 +1,8 @@
 package spelmotorn;
 
+import java.util.HashMap;
+import java.util.function.Consumer;
+
 import javax.swing.JComponent;
 
 public class GameObject extends JComponent{
@@ -7,9 +10,11 @@ public class GameObject extends JComponent{
 	protected final int x, y, w, h; //x och y är koordinaterna bilden ska ritas på.
 	protected int offsetX = 0; 
 	protected int offsetY = 0;
+	protected final int ID; 
+	private HashMap<Integer, Consumer<GameObject>> reactions = new HashMap<Integer, Consumer<GameObject>>();
 	
 	
-	public GameObject(int x, int y, int w, int h){
+	public GameObject(int x, int y, int w, int h, int ID){
 		if(w < 0 || h < 0){
 			throw new IllegalArgumentException("Bredden elr längden kan inte vara negativ");
 		}
@@ -17,6 +22,19 @@ public class GameObject extends JComponent{
 		this.y = y;
 		this.w = w;
 		this.h = h;
+		this.ID = ID;
+	}
+	
+	public void addReaction(int ID, Consumer<GameObject> action){
+		reactions.put(ID, action);
+	}
+	
+	public boolean react(int ID){
+		if(reactions.get(ID) == null){
+			return false;
+		}
+		reactions.get(ID).accept(this);
+		return true;
 	}
 	
 	public int getX(){

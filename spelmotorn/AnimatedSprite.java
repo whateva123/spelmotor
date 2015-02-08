@@ -14,8 +14,8 @@ public class AnimatedSprite extends Sprite{
 	private ArrayList<ImageIcon> bilder = new ArrayList<ImageIcon>();
 	private HashMap<Integer, CollisionBody> collisionBodies = new HashMap<Integer, CollisionBody>();
 	
-	AnimatedSprite(int x, int y, int w, int h, int drawOrder) {
-		super(x, y, w, h, drawOrder);
+	AnimatedSprite(int x, int y, int w, int h, int drawOrder, int ID) {
+		super(x, y, w, h, drawOrder, ID);
 		
 	}
 	
@@ -155,12 +155,10 @@ public class AnimatedSprite extends Sprite{
 	
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
-		System.out.print("ritades");
 		if(background != null){
 			g.drawImage(background.getImage(), x+offsetX+magnitudeX, y+offsetY+magnitudeY, x+w, y+h, this);
 		}
 		if(bildNr != -1){
-			System.out.println(magnitudeX);
 			g.drawImage(bilder.get(bildNr).getImage(), x+offsetX+magnitudeX, y+offsetY+magnitudeY, x+w, y+h, this);
 		}
 	}	

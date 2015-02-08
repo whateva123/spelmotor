@@ -3,7 +3,7 @@ package spelmotorn;
 public class Runner implements Runnable{
 	private boolean running = false;
 	private Renderare renderer;
-	
+
 	
 	@Override
 	public void run() {
@@ -26,9 +26,10 @@ public class Runner implements Runnable{
 			}
 			if(shouldRender){
 			frames++;
-			//renderer.renderLevel();
+			renderer.repaint();
 			}
 			if(System.currentTimeMillis() - lastTimer >= 1000){
+				System.out.println(ticks + " ticks, " + frames + " frames");
 				lastTimer += 1000;
 				frames = 0;
 				ticks = 0;

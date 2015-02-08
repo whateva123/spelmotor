@@ -10,21 +10,27 @@ public class Loader {
 	private int levelNr; //vilken position i ArrayListen den nuvarande leveln är, kanske inte behövs
 	private KeyboardInput keys;
 	private AnimatedSprite player;
+	private Runner gameLoop;
 	
-	Loader(Renderare render, Fysikmotor physic, KeyboardInput keys){ //Ska ta emot alla spelmotorsdelar här. Jag bara påbörjade med mina delar
+	Loader(Renderare render, Fysikmotor physic, KeyboardInput keys, Runner gameLoop){ //Ska ta emot alla spelmotorsdelar här. Jag bara påbörjade med mina delar
 		this.render = render;
 		this.physic = physic; 
 		this.keys = keys;
+		this.gameLoop = gameLoop;
+		gameLoop.addRenderer(render);
 		render.addKeyListener(new Listener());
 	}
 	
 	class Listener extends KeyAdapter{
 		public void keyPressed(KeyEvent e){
 			int key = e.getKeyCode();
+			boolean changed = false;
 			if(player != null){
-				keys.callFunction(key, player);
+				changed = keys.callFunction(key, player);
 			}
-			keys.callFunction(key, Loader.this);
+			if(keys.callFunction(key, Loader.this) || changed){
+				Loader.this.repaintLevel();
+			}
 		}
 	}
 	
@@ -54,5 +60,13 @@ public class Loader {
 	void renderLevel(){
 		render.renderLevel(objekten.get(levelNr));
 	}
+	
+	void repaintLevel(){
+		render.repaint();
+	}
 
+	void startGame(){
+		gameLoop.start();
+	}
+	
 }
