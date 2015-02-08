@@ -58,7 +58,7 @@ public class AnimatedSprite extends Sprite{
 			body.add(new rectangle(minX, maxX, minY, maxY));
 		}
 		
-		public int getMinX(int index){ //de fyra metoderna nedan behöver felkontroller
+		public int getMinX(int index){
 			if(body.get(index) == null){
 				throw new IndexOutOfBoundsException("Det finns inte så här många bilder i denna sprite");
 			}
@@ -87,51 +87,58 @@ public class AnimatedSprite extends Sprite{
 		}
 		
 		
-	}
+	} //Slutet på den inre klassen
 	
 	
 	public void newCollisionBody(int frame, int minX, int maxX, int minY, int maxY){
 		collisionBodies.put(frame, new CollisionBody(minX, maxX, minY, maxY));
 	}
 	
-	public void addPicture(String filePath, CollisionBody body){
+	public void addRect(int frame, int minX, int maxX, int minY, int maxY){
+		collisionBodies.get(frame).addRect(minX, maxX, minY, maxY);
+	}
+	
+	public int getBodySize(){
+		return collisionBodies.get(bildNr).body.size();
+	}
+	
+	public void addPicture(String filePath){
+		if(collisionBodies.get(bilder.size()) == null){
+			throw new IndexOutOfBoundsException("Det finns inte en collisionBody för denna bild än. Skapa en sådan först genom att kalla på \"newCollisionBody\"");
+		}
 		bilder.add(new ImageIcon(filePath));
 		if(bilder.size() == 1){
 			bildNr = 0;
 		}
-		addCollisionBody(bilder.size()-1, body);
 	}
 	
-	private void addCollisionBody(int frame, CollisionBody body){
-		collisionBodies.put(frame, body);
-	}
 	
 	public int getX(int index){
-		if(drawOrder < 0){
+		if(bildNr < 0){
 			return x+offsetX;
 		}
-		return offsetX+collisionBodies.get(drawOrder).getMinX(index);
+		return offsetX+collisionBodies.get(bildNr).getMinX(index);
 	}
 	
 	public int getY(int index){
-		if(drawOrder < 0){
+		if(bildNr < 0){
 			return y+offsetY;
 		}
-		return offsetY+collisionBodies.get(drawOrder).getMinY(index);
+		return offsetY+collisionBodies.get(bildNr).getMinY(index);
 	}
 	
 	public int getMaxX(int index){
-		if(drawOrder < 0){
+		if(bildNr < 0){
 			return x+offsetX+w;
 		}
-		return offsetX+collisionBodies.get(drawOrder).getMaxX(index);
+		return offsetX+collisionBodies.get(bildNr).getMaxX(index);
 	}
 	
 	public int getMaxY(int index){
-		if(drawOrder < 0){
+		if(bildNr < 0){
 			return y+offsetY+w;
 		}
-		return offsetY+collisionBodies.get(drawOrder).getMaxY(index);
+		return offsetY+collisionBodies.get(bildNr).getMaxY(index);
 	}
 
 	

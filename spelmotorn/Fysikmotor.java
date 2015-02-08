@@ -17,14 +17,14 @@ public class Fysikmotor {
 		boolean isobj2 = false;
 		if(obj1 instanceof AnimatedSprite){
 			AnimatedSprite anobj = (AnimatedSprite)obj1;
-			if(anobj.getBody(anobj.getNr()) != null){
+			if(anobj.getNr() > -1){
 				isobj1 = true;
 			}
 		}
 		
 		if(obj2 instanceof AnimatedSprite){
 			AnimatedSprite anobj = (AnimatedSprite)obj2;
-			if(anobj.getBody(anobj.getNr()) != null){
+			if(anobj.getNr() > -1){
 				isobj2 = true;
 			}
 		}
@@ -46,11 +46,9 @@ public class Fysikmotor {
 	}
 	
 	private boolean checkAnimatedCollision(AnimatedSprite obj1, AnimatedSprite obj2){ //beöhvs kontroller
-		CollisionBody bod1 = obj1.getBody(obj1.getNr());
-		CollisionBody bod2 = obj2.getBody(obj2.getNr());
-		for(int x = 0; x < bod1.body.size(); x++){
-			for(int y = 0; y < bod2.body.size(); y++){
-				if(!(bod1.getMinX(x) > bod2.getMaxX(y) || bod1.getMaxX(x) > bod2.getMinX(y) || bod1.getMinY(x) > bod2.getMaxY(y) || bod1.getMaxY(x) > bod2.getMinY(y))){
+		for(int x = 0; x < obj1.getBodySize(); x++){
+			for(int y = 0; y < obj2.getBodySize(); y++){
+				if(!(obj1.getX(x) > obj2.getMaxX(y) || obj1.getMaxX(x) > obj2.getX(y) || obj1.getY(x) > obj2.getMaxY(y) || obj1.getMaxY(x) > obj2.getY(y))){
 					return true;
 				}
 			}
@@ -59,9 +57,8 @@ public class Fysikmotor {
 	}
 	
 	private boolean checkAnimatedCollision(AnimatedSprite obj1, GameObject obj2){
-		CollisionBody bod1 = obj1.getBody(obj1.getNr());
-		for(int x = 0; x < bod1.body.size(); x++){
-			if(!(bod1.getMinX(x) > obj2.getMaxX() || bod1.getMaxX(x) > obj2.getX() || bod1.getMinY(x) > obj2.getMaxY() || bod1.getMaxY(x) > obj2.getY())){
+		for(int x = 0; x < obj1.getBodySize(); x++){
+			if(!(obj1.getX(x) > obj2.getMaxX() || obj1.getMaxX(x) > obj2.getX() || obj1.getY(x) > obj2.getMaxY() || obj1.getMaxY(x) > obj2.getY())){
 				return true;
 			}
 		}

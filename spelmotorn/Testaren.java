@@ -12,10 +12,9 @@ public class Testaren{
 		Loader lvl1 = new Loader(renderer, fysik, tangentbord);
 		AnimatedSprite spr = new AnimatedSprite(0, 0, 800, 800, 0);
 		AnimatedSprite spr2 = new AnimatedSprite(0, 0, 400, 400, 1);
-		CollisionBody body = new CollisionBody();
-		body.addRect(0, 10, 0, 10);
 		spr.addBackground("Images/Sad4.png");
-		spr2.addPicture("C:/Users/SwedishDude/Desktop/DesktopStuff/Hi/PiratePie.png", body);
+		spr2.newCollisionBody(0, 0, 10, 0, 10);
+		spr2.addPicture("C:/Users/SwedishDude/Desktop/DesktopStuff/Hi/PiratePie.png");
 		
 		if(fysik.checkCollision(spr, spr2)){
 			System.out.print("True");
