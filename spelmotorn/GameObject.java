@@ -36,11 +36,11 @@ public class GameObject extends JComponent{
 	}
 	
 	public void changeX(int x){
-		this.offsetX = x+offsetX-x;
+		this.offsetX = offsetX+x;
 	}
 	
 	public void changeY(int y){
-		this.offsetY = y+offsetY-y;
+		this.offsetY = offsetY+y;
 	}
 	
 }
