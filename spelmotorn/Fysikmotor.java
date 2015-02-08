@@ -48,7 +48,7 @@ public class Fysikmotor {
 	private boolean checkAnimatedCollision(AnimatedSprite obj1, AnimatedSprite obj2){ //beöhvs kontroller
 		for(int x = 0; x < obj1.getBodySize(); x++){
 			for(int y = 0; y < obj2.getBodySize(); y++){
-				if(!(obj1.getX(x) > obj2.getMaxX(y) || obj1.getMaxX(x) > obj2.getX(y) || obj1.getY(x) > obj2.getMaxY(y) || obj1.getMaxY(x) > obj2.getY(y))){
+				if(!(obj1.getX(x) > obj2.getMaxX(y) || obj1.getMaxX(x) < obj2.getX(y) || obj1.getY(x) > obj2.getMaxY(y) || obj1.getMaxY(x) < obj2.getY(y))){
 					return true;
 				}
 			}
@@ -58,7 +58,8 @@ public class Fysikmotor {
 	
 	private boolean checkAnimatedCollision(AnimatedSprite obj1, GameObject obj2){
 		for(int x = 0; x < obj1.getBodySize(); x++){
-			if(!(obj1.getX(x) > obj2.getMaxX() || obj1.getMaxX(x) > obj2.getX() || obj1.getY(x) > obj2.getMaxY() || obj1.getMaxY(x) > obj2.getY())){
+			System.out.println(" obj1minX " + obj1.getX(x) + " obj2maxX " + obj2.getMaxX() + " obj1maxX " + obj1.getMaxX(x) + " obj2minX " + obj2.getX() + " obj1minY " + obj1.getY(x) + " obj2maxY " +  obj2.getMaxY() + " obj1MaxY " +  obj1.getMaxY(x) + " obj2miny " + obj2.getY());
+			if(!(obj1.getX(x) > obj2.getMaxX() || obj1.getMaxX(x) < obj2.getX() || obj1.getY(x) > obj2.getMaxY() || obj1.getMaxY(x) < obj2.getY())){
 				return true;
 			}
 		}
