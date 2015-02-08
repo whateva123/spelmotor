@@ -50,5 +50,9 @@ public class Loader {
 	void setPlayer(AnimatedSprite player){
 		this.player = player;
 	}
+	
+	void renderLevel(){
+		render.renderLevel(objekten.get(levelNr));
+	}
 
 }

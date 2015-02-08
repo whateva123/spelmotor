@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 
+
 public class AnimatedSprite extends Sprite{
 
 	private static final long serialVersionUID = 2435106591864541981L;
@@ -16,6 +17,81 @@ public class AnimatedSprite extends Sprite{
 	AnimatedSprite(int x, int y, int w, int h, int drawOrder) {
 		super(x, y, w, h, drawOrder);
 		
+	}
+	
+	private class CollisionBody {
+		
+		private class rectangle{
+			private int minX, maxX, minY, maxY;
+			rectangle(int minX, int maxX, int minY, int maxY){
+				this.minX = minX;
+				this.maxX = maxX;
+				this.minY = minY;
+				this.maxY = maxY;
+			}
+			
+			public int getMinX(){
+				return minX;
+			}
+			
+			public int getMaxX(){
+				return maxX;
+			}
+			
+			public int getMinY(){
+				return minY;
+			}
+			
+			public int getMaxY(){
+				return maxY;
+			}
+		}
+		
+		
+		ArrayList<rectangle> body = new ArrayList<rectangle>();
+		
+		CollisionBody(int minX, int maxX, int minY, int maxY){
+			body.add(new rectangle(minX, maxX, minY, maxY));
+		}
+		
+		public void addRect(int minX, int maxX, int minY, int maxY){
+			body.add(new rectangle(minX, maxX, minY, maxY));
+		}
+		
+		public int getMinX(int index){ //de fyra metoderna nedan behöver felkontroller
+			if(body.get(index) == null){
+				throw new IndexOutOfBoundsException("Det finns inte så här många bilder i denna sprite");
+			}
+			return body.get(index).getMinX();
+		}
+		
+		public int getMaxX(int index){
+			if(body.get(index) == null){
+				throw new IndexOutOfBoundsException("Det finns inte så här många bilder i denna sprite");
+			}
+			return body.get(index).getMaxX();
+		}
+		
+		public int getMinY(int index){
+			if(body.get(index) == null){
+				throw new IndexOutOfBoundsException("Det finns inte så här många bilder i denna sprite");
+			}
+			return body.get(index).getMinY();
+		}
+		
+		public int getMaxY(int index){
+			if(body.get(index) == null){
+				throw new IndexOutOfBoundsException("Det finns inte så här många bilder i denna sprite");
+			}
+			return body.get(index).getMaxY();
+		}
+		
+		
+	}
+	
+	
+	public void newCollisionBody(int frame, int minX, int maxX, int minY, int maxY){
+		collisionBodies.put(frame, new CollisionBody(minX, maxX, minY, maxY));
 	}
 	
 	public void addPicture(String filePath, CollisionBody body){
@@ -30,9 +106,34 @@ public class AnimatedSprite extends Sprite{
 		collisionBodies.put(frame, body);
 	}
 	
-	public CollisionBody getBody(int frame){
-		return collisionBodies.get(frame);
+	public int getX(int index){
+		if(drawOrder < 0){
+			return x+offsetX;
+		}
+		return offsetX+collisionBodies.get(drawOrder).getMinX(index);
 	}
+	
+	public int getY(int index){
+		if(drawOrder < 0){
+			return y+offsetY;
+		}
+		return offsetY+collisionBodies.get(drawOrder).getMinY(index);
+	}
+	
+	public int getMaxX(int index){
+		if(drawOrder < 0){
+			return x+offsetX+w;
+		}
+		return offsetX+collisionBodies.get(drawOrder).getMaxX(index);
+	}
+	
+	public int getMaxY(int index){
+		if(drawOrder < 0){
+			return y+offsetY+w;
+		}
+		return offsetY+collisionBodies.get(drawOrder).getMaxY(index);
+	}
+
 	
 	public void setNr(int nr){
 		if(nr< 0 || nr >= bilder.size()){

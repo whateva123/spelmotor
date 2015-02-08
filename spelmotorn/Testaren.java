@@ -22,14 +22,14 @@ public class Testaren{
 		}else{
 			System.out.print("false");
 		}
-		/*
-		lvl1.addObject(spr2);
-		lvl1.addObject(spr);
-		renderer.addLevel(lvl1);
-		renderer.renderLevel();
-		spr2.setX(spr2.getX()+100);
+		
+		lvl1.addObject(1, spr2);
+		lvl1.addObject(1, spr);
+		lvl1.setLevel(1);
+		lvl1.renderLevel();
+/*		spr2.setX(spr2.getX()+100);
 		spr2.setY(spr2.getY()+100);
-		*/
+*/		
 		
 		boolean quit = false;
 		while(!quit){
