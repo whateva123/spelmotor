@@ -4,11 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
-import spelmotorn.*;
 
 public class Renderare extends JFrame{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6811903705524486530L;
+
+
 	public Renderare(int w, int h, String str){ //w är fönstrets 'width', h är fönstrets 'height'
 		super("str");
 		if(w < 0 || h < 0){

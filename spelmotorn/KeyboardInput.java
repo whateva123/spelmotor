@@ -1,6 +1,5 @@
 package spelmotorn;
 
-import java.awt.event.*;
 import java.util.function.Consumer;
 import java.util.*;
 /*
@@ -9,25 +8,10 @@ import java.util.*;
 
 public class KeyboardInput{
 	
-	private HashMap<Integer, Consumer<AnimatedSprite>> controller = new HashMap<Integer, Consumer<AnimatedSprite>>();
+	private HashMap<Integer, Consumer<AnimatedSprite>> controller = new HashMap<Integer, Consumer<AnimatedSprite>>(); //används för att röra spelarspriten
 	
-	private HashMap<Integer, Consumer<Loader>> keyboard = new HashMap<Integer, Consumer<Loader>>();
+	private HashMap<Integer, Consumer<Loader>> keyboard = new HashMap<Integer, Consumer<Loader>>(); //används för generella tangenttryckningar
 
-/*	public void keyPressed(KeyEvent e){
-		int keys = e.getKeyCode();
-		if(keys == KeyEvent.VK_A)
-			//ChangeX - 2;
-		if(keys = KeyEvent.VK_D)
-			//ChangeX + 2;
-		if(keys = KeyEvent.VK_W)
-			//ChangeY + 2;
-		if(keys = KeyEvent.VK_S)
-			//ChangeY - 2;
-		if(keys = KeyEvent.VK_SPACE)
-			//Jump
-			//jumpSoundMethod()
-	}
-	*/
 	
 	KeyboardInput(){
 		
@@ -56,18 +40,5 @@ public class KeyboardInput{
 		keyboard.get(key).accept(player);
 		return true;
 	}
-	
-/*
- * För att skapa metod som lyssnar på vilken tagnet man tycker är det bara lägga till en if-sats.
- * KeyEvent.VK_A -> returnerar en int som representerar tagnenten i unicode. Dvs. KeyEvent.VK_A -> 56.
- * Man kan också skriva det som:
- * 
- * if (e.getKeyCode() == KeyEvent.VK_A)
- *  ChangeX(-2);
- *  
- */
-	
-	
-	
 	
 }

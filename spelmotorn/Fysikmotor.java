@@ -13,9 +13,9 @@ public class Fysikmotor {
 			return false;
 		}
 		
-		boolean isobj1 = false;
+		boolean isobj1 = false;//kollar om något utav objekten har en collisionbody
 		boolean isobj2 = false;
-		if(obj1 instanceof AnimatedSprite){
+		if(obj1 instanceof AnimatedSprite){ 
 			AnimatedSprite anobj = (AnimatedSprite)obj1;
 			if(anobj.getNr() > -1){
 				isobj1 = true;
@@ -45,7 +45,7 @@ public class Fysikmotor {
 		return true;
 	}
 	
-	private boolean checkAnimatedCollision(AnimatedSprite obj1, AnimatedSprite obj2){ //beöhvs kontroller
+	private boolean checkAnimatedCollision(AnimatedSprite obj1, AnimatedSprite obj2){
 		for(int x = 0; x < obj1.getBodySize(); x++){
 			for(int y = 0; y < obj2.getBodySize(); y++){
 				if(!(obj1.getX(x) > obj2.getMaxX(y) || obj1.getMaxX(x) < obj2.getX(y) || obj1.getY(x) > obj2.getMaxY(y) || obj1.getMaxY(x) < obj2.getY(y))){
@@ -66,7 +66,7 @@ public class Fysikmotor {
 		return false;
 	}
 	
-	public void applyGravity(Sprite spr){
+	public void applyGravity(Sprite spr){ //funktionen som används för att sätta på gravity
 		spr.addForce(0, gravity);
 	}
 	

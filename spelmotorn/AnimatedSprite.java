@@ -10,18 +10,18 @@ import javax.swing.ImageIcon;
 public class AnimatedSprite extends Sprite{
 
 	private static final long serialVersionUID = 2435106591864541981L;
-	protected int bildNr = -1;
-	private ArrayList<ImageIcon> bilder = new ArrayList<ImageIcon>();
-	private HashMap<Integer, CollisionBody> collisionBodies = new HashMap<Integer, CollisionBody>();
+	protected int bildNr = -1; //väljer vilken bild bland bilderna som ska ritas
+	private ArrayList<ImageIcon> bilder = new ArrayList<ImageIcon>(); //samling av bilder
+	private HashMap<Integer, CollisionBody> collisionBodies = new HashMap<Integer, CollisionBody>(); //Map med collisionbodies
 	
 	AnimatedSprite(int x, int y, int w, int h, int drawOrder, int ID) {
 		super(x, y, w, h, drawOrder, ID);
 		
 	}
 	
-	private class CollisionBody {
+	private class CollisionBody { //inäslad klass för skapandet av collisionsbodies
 		
-		private class rectangle{
+		private class rectangle{ //än inäslad klass, inuti den inäslade klassen som håller världena man behöver för rektangeln
 			private int minX, maxX, minY, maxY;
 			rectangle(int minX, int maxX, int minY, int maxY){
 				this.minX = minX;
@@ -45,10 +45,10 @@ public class AnimatedSprite extends Sprite{
 			public int getMaxY(){
 				return maxY;
 			}
-		}
+		} //slut på den inre, inre klassen
 		
 		
-		ArrayList<rectangle> body = new ArrayList<rectangle>();
+		ArrayList<rectangle> body = new ArrayList<rectangle>(); //själva listan med rektanglar som tillsamans utgör collisionbodien
 		
 		CollisionBody(int minX, int maxX, int minY, int maxY){
 			body.add(new rectangle(minX, maxX, minY, maxY));
@@ -58,7 +58,7 @@ public class AnimatedSprite extends Sprite{
 			body.add(new rectangle(minX, maxX, minY, maxY));
 		}
 		
-		public int getMinX(int index){
+		public int getMinX(int index){ //index är vilken rectangel i collisionbody som ska användas
 			if(body.get(index) == null){
 				throw new IndexOutOfBoundsException("Det finns inte så här många bilder i denna sprite");
 			}
@@ -94,7 +94,10 @@ public class AnimatedSprite extends Sprite{
 		collisionBodies.put(frame, new CollisionBody(minX, maxX, minY, maxY));
 	}
 	
-	public void addRect(int frame, int minX, int maxX, int minY, int maxY){
+	public void addRect(int frame, int minX, int maxX, int minY, int maxY){ //lägger till en rectangel till en collisionbody
+		if(collisionBodies.get(frame) == null){
+			throw new IndexOutOfBoundsException("Det finns inte så många collisionBodies");
+		}
 		collisionBodies.get(frame).addRect(minX, maxX, minY, maxY);
 	}
 	
@@ -102,7 +105,7 @@ public class AnimatedSprite extends Sprite{
 		return collisionBodies.get(bildNr).body.size();
 	}
 	
-	public void addPicture(String filePath){
+	public void addPicture(String filePath){ //man måste ha skapat en collisionBody innan man kan läga till en bild
 		if(collisionBodies.get(bilder.size()) == null){
 			throw new IndexOutOfBoundsException("Det finns inte en collisionBody för denna bild än. Skapa en sådan först genom att kalla på \"newCollisionBody\"");
 		}

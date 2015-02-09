@@ -6,13 +6,13 @@ import java.util.*;
 public class Loader {
 	protected HashMap<Integer, ArrayList<GameObject>> objekten = new HashMap<Integer, ArrayList<GameObject>>(); //Mapen med levlarna, där integer står för vilken level, och ArrayListan är alla objekten
 	private Renderare render;
-	private Fysikmotor physic;
+	private Fysikmotor physic; //hann ej till fullo utveckla denna, då det saknar en metod som "aktiverar" fysikmotorn. 
 	private int levelNr; //vilken position i ArrayListen den nuvarande leveln är, kanske inte behövs
 	private KeyboardInput keys;
 	private AnimatedSprite player;
-	private Runner gameLoop;
+	private Runner gameLoop; //denna är ganska onödig än så länge, men kommer utvecklas senare
 	
-	Loader(Renderare render, Fysikmotor physic, KeyboardInput keys, Runner gameLoop){ //Ska ta emot alla spelmotorsdelar här. Jag bara påbörjade med mina delar
+	Loader(Renderare render, Fysikmotor physic, KeyboardInput keys, Runner gameLoop){
 		this.render = render;
 		this.physic = physic; 
 		this.keys = keys;
@@ -21,7 +21,7 @@ public class Loader {
 		render.addKeyListener(new Listener());
 	}
 	
-	class Listener extends KeyAdapter{
+	class Listener extends KeyAdapter{ //lyssnaren av tangenttryck
 		public void keyPressed(KeyEvent e){
 			int key = e.getKeyCode();
 			boolean changed = false;

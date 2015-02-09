@@ -6,12 +6,12 @@ import java.util.function.Consumer;
 import javax.swing.JComponent;
 
 public class GameObject extends JComponent{
-	private static final long serialVersionUID = -6232733248821165116L; //Jag måste kolla vad detta är
+	private static final long serialVersionUID = -6232733248821165116L; 
 	protected final int x, y, w, h; //x och y är koordinaterna bilden ska ritas på.
-	protected int offsetX = 0; 
+	protected int offsetX = 0; //om objectet flyttat på sig så är det dessa som ändras
 	protected int offsetY = 0;
-	protected final int ID; 
-	private HashMap<Integer, Consumer<GameObject>> reactions = new HashMap<Integer, Consumer<GameObject>>();
+	protected final int ID; //det som identifierar objektet
+	private HashMap<Integer, Consumer<GameObject>> reactions = new HashMap<Integer, Consumer<GameObject>>(); //används för att skapa reaktioner när detta objekt kommer i kontakt med ett annat objekt
 	
 	
 	public GameObject(int x, int y, int w, int h, int ID){
