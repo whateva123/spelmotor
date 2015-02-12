@@ -15,8 +15,8 @@ public class Testaren{
 		Renderare renderer = new Renderare(800, 800, "test");
 		Fysikmotor fysik = new Fysikmotor(100);
 		KeyboardInput tangentbord = new KeyboardInput();
-		Runner gameLoop = new Runner();
-		Loader lvl1 = new Loader(renderer, fysik, tangentbord, gameLoop);
+		//Runner gameLoop = new Runner();
+		Loader lvl1 = new Loader(renderer, fysik, tangentbord);
 		AnimatedSprite spr = new AnimatedSprite(0, 0, 800, 800, 0, 1);
 		AnimatedSprite spr2 = new AnimatedSprite(0, 0, 400, 400, 1, 1);
 		spr.addBackground("Images/Sad4.png");

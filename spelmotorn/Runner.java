@@ -1,5 +1,5 @@
 package spelmotorn;
-
+/*
 public class Runner implements Runnable{ //denna var tänkt att vara en gameLoop, men eftersom detta är programmerat i Swing han vi inte till den komplexitetsgraden då denna behövdes riktigt. Dvs så kommer vi ditt eventually
 	private boolean running = false;
 	private Renderare renderer;
@@ -57,3 +57,4 @@ public class Runner implements Runnable{ //denna var tänkt att vara en gameLoop,
 	}
 
 }
+*/

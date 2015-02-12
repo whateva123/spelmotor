@@ -1,9 +1,13 @@
 package spelmotorn;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 
@@ -11,7 +15,7 @@ public class AnimatedSprite extends Sprite{
 
 	private static final long serialVersionUID = 2435106591864541981L;
 	protected int bildNr = -1; //väljer vilken bild bland bilderna som ska ritas
-	private ArrayList<ImageIcon> bilder = new ArrayList<ImageIcon>(); //samling av bilder
+	private ArrayList<BufferedImage> bilder = new ArrayList<BufferedImage>(); //samling av bilder
 	private HashMap<Integer, CollisionBody> collisionBodies = new HashMap<Integer, CollisionBody>(); //Map med collisionbodies
 	
 	AnimatedSprite(int x, int y, int w, int h, int drawOrder, int ID) {
@@ -109,7 +113,13 @@ public class AnimatedSprite extends Sprite{
 		if(collisionBodies.get(bilder.size()) == null){
 			throw new IndexOutOfBoundsException("Det finns inte en collisionBody för denna bild än. Skapa en sådan först genom att kalla på \"newCollisionBody\"");
 		}
-		bilder.add(new ImageIcon(filePath));
+		BufferedImage image = null;
+		try {
+			image = ImageIO.read(new FileInputStream(filePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		bilder.add(image);
 		if(bilder.size() == 1){
 			bildNr = 0;
 		}
@@ -159,10 +169,10 @@ public class AnimatedSprite extends Sprite{
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
 		if(background != null){
-			g.drawImage(background.getImage(), x+offsetX+magnitudeX, y+offsetY+magnitudeY, x+w, y+h, this);
+			g.drawImage(background, x+offsetX+magnitudeX, y+offsetY+magnitudeY, x+w, y+h, this);
 		}
 		if(bildNr != -1){
-			g.drawImage(bilder.get(bildNr).getImage(), x+offsetX+magnitudeX, y+offsetY+magnitudeY, x+w, y+h, this);
+			g.drawImage(bilder.get(bildNr), x+offsetX+magnitudeX, y+offsetY+magnitudeY, x+w, y+h, this);
 		}
 	}	
 	

@@ -1,13 +1,18 @@
 package spelmotorn;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class Sprite extends GameObject{
 	private static final long serialVersionUID = 7805504552767123047L;
-	protected ImageIcon background;
+	protected BufferedImage background = null;
 	protected int drawOrder;
-/*
+	private String backgroundPath;
+	/*
  * offsetX och offsetY är koordinaterna bilden ska flyttas med. w står för width, och h för height. bildNr är vilken bild som ska vissas.
  * drawOrder är vilken prioritet bilden ska ritas med (t.ex, en bakgrund ska ritas först, så den har drawOrder '0') 
  */
@@ -32,7 +37,11 @@ public class Sprite extends GameObject{
 	}
 	
 	public void addBackground(String filePath){
-		background = new ImageIcon(filePath);
+		try {
+			background = ImageIO.read(new FileInputStream(filePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -79,7 +88,7 @@ public class Sprite extends GameObject{
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
 		if(background != null){
-			g.drawImage(background.getImage(), x+offsetX+magnitudeX, y+offsetY+magnitudeY, x+w, y+h, this);
+			g.drawImage(background, x+offsetX+magnitudeX, y+offsetY+magnitudeY, x+w, y+h, null);
 		}
 	}
 	

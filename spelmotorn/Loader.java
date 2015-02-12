@@ -10,14 +10,14 @@ public class Loader {
 	private int levelNr; //vilken position i ArrayListen den nuvarande leveln är, kanske inte behövs
 	private KeyboardInput keys;
 	private AnimatedSprite player;
-	private Runner gameLoop; //denna är ganska onödig än så länge, men kommer utvecklas senare
+	//private Runner gameLoop; //denna är ganska onödig än så länge, men kommer utvecklas senare
 	
-	Loader(Renderare render, Fysikmotor physic, KeyboardInput keys, Runner gameLoop){
+	Loader(Renderare render, Fysikmotor physic, KeyboardInput keys){
 		this.render = render;
 		this.physic = physic; 
 		this.keys = keys;
-		this.gameLoop = gameLoop;
-		gameLoop.addRenderer(render);
+		//this.gameLoop = gameLoop;
+		//gameLoop.addRenderer(render);
 		render.addKeyListener(new Listener());
 	}
 	
@@ -29,8 +29,9 @@ public class Loader {
 				changed = keys.callFunction(key, player);
 			}
 			if(keys.callFunction(key, Loader.this) || changed){
-				Loader.this.repaintLevel();
+				render.paintWorld(objekten.get(levelNr));
 			}
+			System.out.println("SpaceTryckt");
 		}
 	}
 	
@@ -65,8 +66,8 @@ public class Loader {
 		render.repaint();
 	}
 
-	void startGame(){
+	/*void startGame(){
 		gameLoop.start();
-	}
+	}*/
 	
 }
