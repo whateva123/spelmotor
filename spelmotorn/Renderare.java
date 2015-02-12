@@ -5,28 +5,26 @@ import java.awt.*;
 import java.util.*;
 
 
-public class Renderare extends JFrame{
+public class Renderare extends JPanel{
 
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6811903705524486530L;
-
+	JFrame window;
 
 	public Renderare(int w, int h, String str){ //w är fönstrets 'width', h är fönstrets 'height'
-		super("str");
+		window = new JFrame(str);
 		if(w < 0 || h < 0){
 			throw new IllegalArgumentException("Bredden elr längden kan inte vara negativ");
 		}
-		setMinimumSize(new Dimension(w, h));
-		setMaximumSize(new Dimension(w, h));
-		setPreferredSize(new Dimension(w, h));
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(w, h);
+		window.setMinimumSize(new Dimension(w, h));
+		window.setMaximumSize(new Dimension(w, h));
+		window.setPreferredSize(new Dimension(w, h));
+		window.setDefaultCloseOperation(window.EXIT_ON_CLOSE);
+		window.setSize(w, h);
+		window.setResizable(false);
 		setLayout(new BorderLayout());
-		pack();
-		setVisible(true);
+		window.pack();
+		window.add(this);
+		window.setVisible(true);
 	}
 	
 	

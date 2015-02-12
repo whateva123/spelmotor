@@ -18,7 +18,7 @@ public class Loader {
 		this.keys = keys;
 		this.gameLoop = gameLoop;
 		gameLoop.addRenderer(render);
-		render.addKeyListener(new Listener());
+		render.window.addKeyListener(new Listener());
 	}
 	
 	class Listener extends KeyAdapter{ //lyssnaren av tangenttryck
@@ -29,7 +29,7 @@ public class Loader {
 				changed = keys.callFunction(key, player);
 			}
 			if(keys.callFunction(key, Loader.this) || changed){
-				Loader.this.repaintLevel();
+				render.window.repaint();
 			}
 		}
 	}

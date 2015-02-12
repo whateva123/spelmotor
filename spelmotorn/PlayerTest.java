@@ -5,6 +5,7 @@ public class PlayerTest{ //VARNING denna klass är enbart ett exempel på vad anvä
 
 	public static void playerAction(AnimatedSprite spr) {
 		spr.changeX(10);
+		System.out.println("spaceTryckt");
 		
 	}
 	
